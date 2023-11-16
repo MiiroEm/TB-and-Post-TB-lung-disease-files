@@ -1,0 +1,43 @@
+---
+title: "Sample size calculation for PTLD"
+author: "Miiro Emmanuel"
+format: html
+editor: visual
+---
+
+# SAMPLE SIZE CALCULATION FOR POST-TUBERCULOSIS LUNG DISEASE STUDY
+
+Here's the summary from the expert on the subject. "We are trying to determine the minimum required sample size to answer a prevalence (proportion) question.
+
+Objective 1: To determine the differences in disability between the HIV+ and HIV- TB survivors with POST TB LUNG DISEASE . We define disability using a disability score, e.g. if you meet a disability score of 50 and above, then you are considered physically disabled.
+
+Objective 2: To find out the factors associated with disability.
+
+In our preliminary data, we have enrolled 116 post-TB patients, 65 HIV-negative and 51 HIV positive. Of these (21/51 HIV+) have PTLD and overall 68/116 have PTLD
+
+Also, out of the 93 that were subjected to a disability test, 62/93, had disability. 25/41 were HIV positive. NOT ALL 93 had PTLD!
+
+In factors associated with disability, only one factor was significant at an OR Of 4.2, p=0.02 C.1 1.25 to 14
+
+Ideally I would want a minimum sample size of..........produces a two-sided 95% confidence interval with a width equal to ....... When the proportion is 0.05. And a figure of confidence intervals bases on the proportion affected."
+
+Here, I see two objectives and consequently two questions to be answered. In my opinion, both will require a sample size calculation and the highest would determine the study enrollment. A useful resource I came across for sample size calculations was by Dr. Mark Williamson of DaKota Cancer Collaborative on translational activity(\*ref).
+
+## Objective 1
+
+This objective seeks to determine a difference in levels of disability in 2 groups. Statistically, I think a test for difference in proportions will be done.
+Ideally, we would need to get the proportion of HIV+ and have PTLD with disability and compare their proportion to those who are HIV- and have PTLD.
+However, the preliminary data doesn't clearly delineate which of the patients that underwent the disability test had PTLD. 
+Indirectly, I'm going to look at the TB survivors who underwent a disability test and compare the proportion of HIV+ patients with disability (24/41) vs the HIV- patients with no disability(38/52). The later is obtained by subtracting the values for HIV+ patients from the marginal total given (62/93).
+ALternatvely, if the proportion of HIV+ patients with disability is 
+Setting the power to 80% and significance level to 0.05, we calculate the required sample size.
+
+```{r}
+#| warning: false
+
+library(pwr)
+results <- pwr.2p.test(h = ES.h(p1 = 24/41, p2 = 38/52), n = NULL, power = 0.8, sig.level = 0.05, alternative = "two.sided")
+print(results)
+```
+The results show that we need to sample 165 participants from **each** group (total sample size = 330). 
+
